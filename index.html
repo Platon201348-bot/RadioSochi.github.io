@@ -3,20 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="yandex-verification" content="3ba2c5b421e88fcd" />
     <title>Радио Сочи — первое радио без рекламы</title>
     <meta name="description" content="Радио Сочи — первое радио без рекламы">
 
     <!-- Фавиконки -->
-    <link rel="icon" type="image/x-icon" href="img.ico">
-    <link rel="shortcut icon" type="image/x-icon" href="img.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="img.png">
     <link rel="icon" type="image/png" sizes="32x32" href="img.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="img.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img.png">
     <meta name="msapplication-TileImage" content="img.png">
-
-    <!-- Мобильная тема -->
     <meta name="theme-color" content="#e74c3c">
 
     <style>
@@ -265,20 +259,23 @@
             </ul>
         </nav>
 
+        <!-- Основной макет -->
+        <main>
+            <!-- Левая колонка: основной контент -->
+            <div class="content-area">
+                <h2>Радио Сочи — первая радиостанция в России, которая отказалась от рекламы в эфире, чтобы подарить вам чистое музыкальное наслаждение.</h2>
+                </div>
 
-            <!-- Сайдбар -->
+            <!-- Правая колонка: сайдбар -->
             <aside class="sidebar">
                 <div class="widget">
-                    <h3>О нас</h3>
-                    <p>Радио Сочи — первая радиостанция в России, которая отказалась от рекламы в эфире, чтобы подарить вам чистое музыкальное наслаждение.</p>
-                </div>
-                
-                <div class="widget">
-                    <p>Также вы можете передать привет в прямом эфире — перейдите по ссылке: <a href="https://vk.com/im?sel=-232448198" target="_blank">https://vk.com/im?sel=-232448198</a>.</p>
+                    <h3>ВНИМАНИЕ!</h3>
+                    <p>Также вы можете передать привет в прямом эфире — перейдите по ссылке: <a href="https://vk.com/im?sel=-232448198" target="_blank">написать в VK</a>.</p>
                 </div>
             </aside>
         </main>
 
+        <!-- Футер -->
         <footer>
             <p>&copy; 2026 Радио Сочи. Все права защищены.</p>
         </footer>
@@ -286,9 +283,12 @@
 
     <!-- JavaScript -->
     <script>
-        // Показ поп-апа при загрузке
+        // Показ поп-апа при первой загрузке
         window.addEventListener('load', function() {
-            document.getElementById('welcomePopup').style.display = 'flex';
+            if (!localStorage.getItem('popupShown')) {
+                document.getElementById('welcomePopup').style.display = 'flex';
+                localStorage.setItem('popupShown', 'true');
+            }
         });
 
         function closePopup() {
@@ -296,19 +296,19 @@
         }
     </script>
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109513443', 'ym');
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109513443', 'ym');
 
-    ym(109513443, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/109513443" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+        ym(109513443, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/109513443" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 
 </body>
 </html>
