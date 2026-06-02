@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прямой эфир — Радио Сочи</title>
+    <meta name="description" content="Радио Сочи — первое радио без рекламы">
+    <link rel="stylesheet" href="css.css">
+
+
+    <!-- Фавиконки -->
+<link rel="icon" href="img.ico" type="image/x-icon">
+<link rel="icon" href="img.png" sizes="16x16" type="image/png">
+<link rel="icon" href="img.png" sizes="32x32" type="image/png">
+<link rel="icon" href="img.png" sizes="96x96" type="image/png">
+
+<!-- Фавикон в формате SVG (масштабируемый, подходит для современных браузеров) -->
+<link rel="icon" href="img.svg" type="image/svg+xml">
+
+<!-- Иконки для Apple‑устройств (iPhone, iPad) -->
+<link rel="apple-touch-icon" href="img.png">
+<link rel="apple-touch-icon" sizes="152x152" href="img.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img.png">
+<link rel="apple-touch-icon" sizes="167x167" href="img.png">
+
+<!-- Поддержка для Android Chrome (PWA) -->
+<link rel="icon" type="image/png" sizes="192x192" href="img.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img.png">
+
+<!-- Манифест для PWA (Android Chrome) -->
+<link rel="manifest" href="/manifest.json">
+
+<!-- Поддержка Microsoft (Windows Tile) -->
+<meta name="msapplication-TileColor" content="#e74c3c">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#e74c3c">
+
+
+</head>
+<body>
+
+    <!-- Поп-ап уведомление -->
+    <div id="welcomePopup" class="popup-overlay">
+        <div class="popup-content">
+            <h3>Внимание!</h3>
+            <p>Радио Сочи проводит эфир только с 8:00 до 20:00!</p>
+            <button class="close-btn" onclick="closePopup()">Понятно</button>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="container">
+        <header>
+            <h1>Радио Сочи</h1>
+            <p class="tagline">Первое радио без рекламы</p>
+        </header>
+
+        <!-- Прямой эфир -->
+        <main>
+            <section class="content-area">
+                <h3>Прямой эфир</h3>
+                <div class="video-container">
+                    <iframe 
+                        src="https://vk.com/video_ext.php?oid=-232448198&id=456239052&autoplay=1" 
+                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock" 
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Радио Сочи. Все права защищены.</p>
+        </footer>
+    </div>
+
+     <!-- Навигационная панель -->
+        <nav class="top-nav">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="news.html">Новости радиостанции</a></li>
+            </ul>
+        </nav>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('welcomePopup').style.display = 'flex';
+});
+
+function closePopup() {
+    document.getElementById('welcomePopup').style.display = 'none';
+}
+
+    </script>
+
+  
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109513443', 'ym');
+
+    ym(109513443, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109513443" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+ 
+</body>
+</html>
