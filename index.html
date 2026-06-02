@@ -1,132 +1,107 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>P2P чат без сервера</title>
-  <style>
-    body { font-family: sans-serif; max-width: 600px; margin: 20px auto; }
-    #messages { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: auto; }
-    .msg { margin: 5px 0; }
-    .msg.me { background: #e3f2fd; padding: 5px 10px; border-radius: 5px; }
-    .msg.other { background: #f5f5f5; padding: 5px 10px; border-radius: 5px; }
-    #inputArea { display: flex; gap: 5px; margin-top: 10px; }
-    input { flex: 1; padding: 8px; }
-    button { padding: 8px 15px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Радио Сочи</title>
+    <meta name="description" content="Радио Сочи — первое радио без рекламы">
+    <link rel="stylesheet" href="css.css">
+
+
+    <!-- Фавиконки -->
+<link rel="icon" href="img.ico" type="image/x-icon">
+<link rel="icon" href="img.png" sizes="16x16" type="image/png">
+<link rel="icon" href="img.png" sizes="32x32" type="image/png">
+<link rel="icon" href="img.png" sizes="96x96" type="image/png">
+
+<!-- Иконки для Apple‑устройств (iPhone, iPad) -->
+<link rel="apple-touch-icon" href="img.png">
+<link rel="apple-touch-icon" sizes="152x152" href="img.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img.png">
+<link rel="apple-touch-icon" sizes="167x167" href="img.png">
+
+<!-- Поддержка для Android Chrome (PWA) -->
+<link rel="icon" type="image/png" sizes="192x192" href="img.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img.png">
+
+<!-- Манифест для PWA (Android Chrome) -->
+<link rel="manifest" href="manifest.json">
+
+<!-- Поддержка Microsoft (Windows Tile) -->
+<meta name="msapplication-TileColor" content="#e74c3c">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#e74c3c">
+
+
 </head>
 <body>
-  <h1>💬 P2P чат (без бэкенда)</h1>
-  <p>Откройте эту страницу в двух вкладках. В первой — скопируйте ID, вставьте во вторую и подключитесь.</p>
 
-  <label>ID собеседника (или нажмите "Создать ID"): 
-    <button id="createIdBtn">Создать новый ID</button>
-    <input type="text" id="remoteIdInput" placeholder="Вставьте ID собеседника">
-    <button id="connectBtn">Подключиться</button>
-  </label>
+    <!-- Поп-ап уведомление -->
+    <div id="welcomePopup" class="popup-overlay">
+        <div class="popup-content">
+            <h3>Внимание!</h3>
+            <p>Радио Сочи проводит эфир только с 8:00 до 20:00!</p>
+            <button class="close-btn" onclick="closePopup()">Понятно</button>
+        </div>
+    </div>
 
-  <div id="myIdDisplay" style="margin: 10px 0; font-weight: bold; color: #0066cc;"></div>
+    <!-- Основной контент -->
+    <div class="container">
+        <header>
+            <h1>Радио Сочи</h1>
+            <p class="tagline">Первое радио без рекламы</p>
+        </header>
 
-  <div id="messages"></div>
-  <div id="inputArea">
-    <input type="text" id="messageInput" placeholder="Введите сообщение..." autocomplete="off">
-    <button id="sendBtn">Отправить</button>
-  </div>
+        <!-- Навигационная панель -->
+        <nav class="top-nav">
+            <ul>
+                <li><a href="live.html">Прямой эфир</a></li>
+                <li><a href="news.html">Новости радиостанции</a></li>
+            </ul>
+        </nav>
 
-  <!-- Подключаем PeerJS -->
-  <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
-  <script>
-    let peer = null;
-    let conn = null;
+        <!-- Текст -->
+        <main>
+            <section class="content-area">
+                <h3>О радио</h3>
+                <h4>Радио Сочи — первая радиостанция в России, которая отказалась от рекламы в эфире, чтобы подарить вам чистое музыкальное наслаждение.</h4>
+                <h3>Также</h3>
+                <h4>Вы можете передать привет в прямом эфире — перейдите по ссылке: <a href="https://vk.com/im?sel=-232448198" >https://vk.com/im?sel=-232448198</a>.</h4>
+             </section>
+        </main>
 
-    const messagesDiv = document.getElementById('messages');
-    const remoteIdInput = document.getElementById('remoteIdInput');
-    const myIdDisplay = document.getElementById('myIdDisplay');
-    const createIdBtn = document.getElementById('createIdBtn');
-    const connectBtn = document.getElementById('connectBtn');
-    const messageInput = document.getElementById('messageInput');
-    const sendBtn = document.getElementById('sendBtn');
+        <footer>
+            <p>&copy; 2026 Радио Сочи. Все права защищены.</p>
+        </footer>
+    </div>
 
-    // 1. Создать новый Peer (новый ID)
-    createIdBtn.onclick = () => {
-      if (peer) peer.destroy();
-      peer = new Peer(); // Создаёт уникальный ID
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('welcomePopup').style.display = 'flex';
+});
 
-      peer.on('open', (id) => {
-        myIdDisplay.textContent = `Ваш ID: ${id}`;
-        remoteIdInput.value = id;
-      });
+function closePopup() {
+    document.getElementById('welcomePopup').style.display = 'none';
+}
 
-      peer.on('connection', (c) => {
-        addLog(`🚀 Подключение от ${c.peer}`);
-        handleConnection(c);
-      });
-    };
 
-    // 2. Подключиться к другому (клиент-клиент)
-    connectBtn.onclick = async () => {
-      if (!peer) peer = new Peer();
+    </script>
 
-      const remoteId = remoteIdInput.value.trim();
-      if (!remoteId) return alert('Введите ID собеседника');
+  
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109513443', 'ym');
 
-      peer.on('open', () => {
-        conn = peer.connect(remoteId);
-        handleConnection(conn);
-      });
-    };
-
-    // Обработка соединения (как клиент, так и сервер)
-    function handleConnection(c) {
-      if (conn && c !== conn) return; // Используем первое соединение
-
-      conn = c;
-      conn.on('open', () => {
-        addLog('✅ Подключено! Теперь можно sending messages.');
-      });
-      conn.on('data', (data) => {
-        addMessage(data, 'other');
-      });
-      conn.on('close', () => addLog('❌ Соединение разорвано'));
-    }
-
-    // Отправка
-    sendBtn.onclick = sendMessage;
-    messageInput.addEventListener('keypress', (e) => if (e.key === 'Enter') sendMessage());
-
-    function sendMessage() {
-      const text = messageInput.value.trim();
-      if (!text || !conn) return;
-
-      conn.send(text);
-      addMessage(text, 'me');
-      messageInput.value = '';
-    }
-
-    // UI
-    function addMessage(text, from) {
-      const div = document.createElement('div');
-      div.className = `msg ${from}`;
-      div.textContent = from === 'me' ? `Я: ${text}` : `Собеседник: ${text}`;
-      messagesDiv.appendChild(div);
-      messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-
-    function addLog(text) {
-      const div = document.createElement('div');
-      div.style.color = '#666';
-      div.textContent = text;
-      messagesDiv.appendChild(div);
-      messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-
-    // Авто создание ID при загрузке
-    window.onload = () => {
-      const btn = document.createElement('button');
-      btn.textContent = 'Нажмите здесь, чтобы создать мой ID и начать';
-      btn.style.margin = '5px 0';
-      btn.onclick = createIdBtn.onclick;
-      myIdDisplay.appendChild(btn);
-    };
-  </script>
+    ym(109513443, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109513443" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+ 
 </body>
 </html>
